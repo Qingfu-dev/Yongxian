@@ -122,6 +122,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &448452948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 448452949}
+  m_Layer: 0
+  m_Name: Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &448452949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448452948}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.705, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1924248322}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1818862221
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,9 +216,9 @@ GameObject:
   - component: {fileID: 1924248322}
   - component: {fileID: 1924248321}
   - component: {fileID: 1924248320}
+  - component: {fileID: 1924248326}
+  - component: {fileID: 1924248325}
   - component: {fileID: 1924248319}
-  - component: {fileID: 1924248318}
-  - component: {fileID: 1924248317}
   - component: {fileID: 1924248323}
   m_Layer: 0
   m_Name: Capsule
@@ -196,67 +227,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1924248317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924248316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48e4db1ca6f6dd048b2b169d64f76dc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controlEnabled: 1
-  cameraTransform: {fileID: 0}
-  mouseSensitivity: 2.5
-  invertY: 0
-  lockCursor: 1
-  mouseControlsPitch: 1
-  pitchLimit: 70
-  swimSpeed: 3.5
-  boostMultiplier: 1.9
-  throttleRamp: 1.2
-  throttleRelease: 0.5
-  reverseRatio: -0.35
-  verticalSpeed: 2.5
-  maxStamina: 100
-  staminaDrain: 22
-  staminaRegen: 14
-  staminaRegenDelay: 0.6
-  staminaResumeRatio: 0.2
-  responsiveness: 1.8
-  ascendKey: 32
-  descendKey: 306
-  boostKey: 304
-  autoFitCollider: 1
---- !u!143 &1924248318
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924248316}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &1924248319
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -344,6 +314,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2080470602}
+  - {fileID: 448452949}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1924248323
@@ -365,6 +336,47 @@ MonoBehaviour:
   drawNegative: 1
   showLabels: 1
   drawInGameView: 1
+--- !u!114 &1924248325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924248316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4672928eeb8de4943abb87a06f45eb61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 448452949}
+  acceleration: 6
+  waterDrag: 1.2
+  rangeCenter: {fileID: 0}
+  rangeRadius: 13.8
+  screenFade: {fileID: 0}
+  ascendKey: 32
+  descendKey: 304
+  verticalSpeed: 2.5
+  turnLeftKey: 97
+  turnRightKey: 100
+  turnRampTime: 0.5
+  maxTurnSpeed: 30
+  headTransform: {fileID: 0}
+  bodyTransform: {fileID: 1924248322}
+  headTurnSpeed: 180
+--- !u!114 &1924248326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924248316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c4b89e2231d48a42a5238626a9681e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightRadius: 5
 --- !u!1 &2080470597
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +388,8 @@ GameObject:
   - component: {fileID: 2080470602}
   - component: {fileID: 2080470601}
   - component: {fileID: 2080470600}
+  - component: {fileID: 2080470605}
+  - component: {fileID: 2080470604}
   - component: {fileID: 2080470603}
   m_Layer: 0
   m_Name: Main Camera
@@ -451,13 +465,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080470597}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -5.59, z: -1.84}
+  m_LocalRotation: {x: -0.64456904, y: -0, z: -0, w: 0.7645461}
+  m_LocalPosition: {x: 0, y: -8.49, z: -2.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1924248322}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -80.267, y: 0, z: 0}
 --- !u!114 &2080470603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,12 +484,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098b3eee9873f16469d3b1d8f96ea150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterColor: {r: 0.05, g: 0.32, b: 0.38, a: 1}
+  waterColor: {r: 0.38714847, g: 0.53409326, b: 0.5660378, a: 1}
   density: 0.08
   absorption: {r: 1, g: 0.45, b: 0.25, a: 1}
-  distortionStrength: 1
-  distortionSpeed: 1
-  waveScale: 9
+  distortionStrength: 0.34
+  distortionSpeed: 0.21
+  waveScale: 4.5
   causticsColor: {r: 1, g: 0.96, b: 0.82, a: 1}
   causticsIntensity: 0.4
   causticsScale: 12
@@ -486,6 +500,62 @@ MonoBehaviour:
   vignettePower: 2.5
   enableEffect: 1
   underwaterShader: {fileID: 0}
+--- !u!114 &2080470604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080470597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f837b5a806644e846b2bf40e9d105a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1924248322}
+  distance: 5
+  mouseSensitivity: 2.5
+  invertY: 0
+  minPitch: -80
+  maxPitch: 80
+  lockCursor: 1
+--- !u!114 &2080470605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080470597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31348069df675894fbc7bcd8847f69c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 1.2
+  alphaCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: -1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

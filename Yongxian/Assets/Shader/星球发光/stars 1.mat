@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: stars
+  m_Name: stars 1
   m_Shader: {fileID: 4800000, guid: c67173f838debb840ac8004ec42e9a64, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -70,7 +70,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Intensity: 1.7
+    - _Intensity: 0.6
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
