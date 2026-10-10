@@ -21,12 +21,8 @@ public class Fishswimcontrol : MonoBehaviour
     [Tooltip("活动中心：留空 = 游戏开始时鱼所在的位置")]
     public Transform rangeCenter;
 
-    [Tooltip("活动半径（米）：超出该球会触发越界效果（当前 = 回到原点）；0 = 不限制")]
+    [Tooltip("活动半径（米）：超出就会以活动中心为球心把鱼挡回球内；0 = 不限制")]
     public float rangeRadius = 10f;
-
-    [Header("越界效果")]
-    [Tooltip("越界时的屏幕黑幕渐隐特效（一般挂在相机上）；留空 = 游戏开始时自动在场景里找")]
-    public ScreenFade screenFade;
 
     [Header("上下浮潜（空格 / Shift）")]
     [Tooltip("上浮键")]
@@ -72,11 +68,8 @@ public class Fishswimcontrol : MonoBehaviour
 
     void Start()
     {
-        // 记录初始位置：没有手动指定活动中心时，球以这里为球心
+        // 记录初始位置：没有手动指定活动中心时，圆以这里为圆心
         _homeCenter = transform.position;
-
-        // 没手动指定黑幕特效时，自动在场景里找
-        if (screenFade == null) screenFade = FindObjectOfType<ScreenFade>();
 
         Transform body = bodyTransform != null ? bodyTransform : transform;
 
@@ -99,7 +92,7 @@ public class Fishswimcontrol : MonoBehaviour
         VerticalSwim();
         Turn();
         LookAtTarget();
-        CheckOutOfRange();
+        ClampToRange();
     }
 
     // 按住 W：朝目标方向加速；水阻力持续衰减速度（松开后滑行一段再停）
@@ -176,30 +169,25 @@ public class Fishswimcontrol : MonoBehaviour
         body.Rotate(0f, step, 0f, Space.World);
     }
 
-    // 球形活动范围检查：超出就触发越界效果（当前效果 = 回到原点）
-    void CheckOutOfRange()
+    // 球形活动范围：超出就把鱼挡回球面上，并消掉速度里朝外的分量
+    void ClampToRange()
     {
         if (rangeRadius <= 0f) return;
 
         Vector3 center = rangeCenter != null ? rangeCenter.position : _homeCenter;
 
         Vector3 offset = transform.position - center;   // 到球心的距离（含上下方向）
-        if (offset.sqrMagnitude <= rangeRadius * rangeRadius) return;
+        float dist = offset.magnitude;
+        if (dist <= rangeRadius) return;
 
-        OutOfRangeEffect(center);
-    }
+        Vector3 dir = offset / dist;   // 球心 → 鱼的径向
 
-    // 超出活动范围时触发的效果：黑幕渐隐 + 回到原点（活动中心）
-    void OutOfRangeEffect(Vector3 origin)
-    {
-        // 先铺黑幕（同一帧里完成），盖住瞬移过程，再慢慢透明到 0
-        if (screenFade != null) screenFade.Play();
+        // 位置贴回球面
+        transform.position = center + dir * rangeRadius;
 
-        // 目前的效果：直接回到原点，并清掉速度，避免刚回去又立刻被甩出来
-        transform.position = origin;
-        _velocity = Vector3.zero;
-
-        Debug.Log("超出活动范围：触发效果——回到原点", this);
+        // 消掉朝外的速度分量：贴着球面滑动，而不是顶着边界抖动
+        float outward = Vector3.Dot(_velocity, dir);
+        if (outward > 0f) _velocity -= dir * outward;
     }
 
     // 在 Scene 视图选中鱼时画出球形活动范围，方便调半径

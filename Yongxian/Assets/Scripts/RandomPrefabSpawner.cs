@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -6,6 +7,7 @@ using UnityEngine;
 ///   并跟随本物体的位置与旋转（旋转挂脚本的物体即可旋转整个区域）。
 ///   生成后的物体会一直保留在场景中，不做回收或销毁。
 /// 可以勾选 spawnOnStart 自动生成，也可以在代码中调用 Spawn() 手动生成。
+///   也可以调用 SpawnAt(中心, 半径) 在指定位置爆炸式生成一批（供宇宙大爆炸演出用）。
 /// </summary>
 [DisallowMultipleComponent]
 public class RandomPrefabSpawner : MonoBehaviour
@@ -21,6 +23,9 @@ public class RandomPrefabSpawner : MonoBehaviour
 
     [Tooltip("启用时自动生成一次；关闭则只能调用 Spawn() 手动生成")]
     public bool spawnOnStart = true;
+
+    [Tooltip("运行时自动记录的已生成实例（供其它脚本读取，例如宇宙膨胀演出）")]
+    public List<GameObject> spawnedObjects = new List<GameObject>();
 
     [Header("生成区域")]
     [Tooltip("区域形状：盒体 / 球体")]
@@ -63,7 +68,30 @@ public class RandomPrefabSpawner : MonoBehaviour
 
             Vector3 position = transform.TransformPoint(RandomLocalPoint());
             Quaternion rotation = randomRotation ? Random.rotation : prefab.transform.rotation;
-            Instantiate(prefab, position, rotation);
+            spawnedObjects.Add(Instantiate(prefab, position, rotation));
+        }
+    }
+
+    /// <summary>
+    /// 在指定世界位置、指定半径的球形区域内爆炸式生成一批（数量沿用 count）。
+    /// 供宇宙大爆炸等特殊演出调用，不影响也不修改本物体自身的区域设置。
+    /// </summary>
+    public void SpawnAt(Vector3 worldCenter, float radius)
+    {
+        if (prefabs == null || prefabs.Length == 0)
+        {
+            Debug.LogWarning("RandomPrefabSpawner：没有指定预制体", this);
+            return;
+        }
+
+        for (int i = 0; i < count; i++)
+        {
+            GameObject prefab = prefabs[Random.Range(0, prefabs.Length)];
+            if (prefab == null) continue;
+
+            Vector3 position = worldCenter + Random.insideUnitSphere * radius;
+            Quaternion rotation = randomRotation ? Random.rotation : prefab.transform.rotation;
+            spawnedObjects.Add(Instantiate(prefab, position, rotation));
         }
     }
 

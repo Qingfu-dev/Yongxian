@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4361620400230589476}
   - component: {fileID: 6692134292720345302}
   - component: {fileID: 5403463670444940971}
+  - component: {fileID: -7629562040514644582}
   - component: {fileID: 8972898317796586732}
   - component: {fileID: 7532879040138796591}
   - component: {fileID: 474920465668467171}
@@ -86,6 +87,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-7629562040514644582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6752348506821908643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2bbd7083ab61224bb5b2039a8935472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pheromoneRadius: 47.4
+  moveSpeed: 3
+  stopDistance: 1.5
+  slowdownDistance: 4
+  separationRadius: 1.5
+  separationStrength: 2
+  rotateToMoveDirection: 1
+  turnSpeed: 360
 --- !u!114 &8972898317796586732
 MonoBehaviour:
   m_ObjectHideFlags: 0

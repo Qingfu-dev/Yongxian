@@ -184,8 +184,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 6752348506821908643, guid: 62f8d6df80c707f43b26e81f8ee09d34, type: 3}
-  count: 10
+  count: 166
   spawnOnStart: 1
+  spawnedObjects: []
   shape: 0
   boxSize: {x: 50.9, y: 28.8, z: 60.3}
   sphereRadius: 20
@@ -220,6 +221,7 @@ GameObject:
   - component: {fileID: 1924248325}
   - component: {fileID: 1924248319}
   - component: {fileID: 1924248323}
+  - component: {fileID: 1924248327}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -352,8 +354,7 @@ MonoBehaviour:
   acceleration: 6
   waterDrag: 1.2
   rangeCenter: {fileID: 0}
-  rangeRadius: 13.8
-  screenFade: {fileID: 0}
+  rangeRadius: 137.6
   ascendKey: 32
   descendKey: 304
   verticalSpeed: 2.5
@@ -377,6 +378,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightRadius: 5
+--- !u!114 &1924248327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924248316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb0fb28de1f3734896b841ac8ca42b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pheromoneRadius: 8.93
 --- !u!1 &2080470597
 GameObject:
   m_ObjectHideFlags: 0
