@@ -469,7 +469,7 @@ MonoBehaviour:
   count: 360
   spawnOnStart: 1
   spawnedObjects: []
-  shape: 0
+  shape: 1
   boxSize: {x: 751.94, y: 395.84, z: 605.4}
   sphereRadius: 5
   randomRotation: 1
@@ -552,7 +552,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  minSpeed: 30
+  minSpeed: 10
   maxSpeed: 45
   hubbleBoost: 0.2
   fovCurve:
@@ -601,37 +601,6 @@ MonoBehaviour:
   shakeAmplitude: 0.77
   shakeFrequency: 22
   replayKey: 102
---- !u!1 &1604115382
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1604115383}
-  m_Layer: 6
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1604115383
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1604115382}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.82, y: 1, z: -9.19}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1841654610
 GameObject:
   m_ObjectHideFlags: 0
@@ -5536,4 +5505,3 @@ SceneRoots:
   - {fileID: 170944367}
   - {fileID: 734792038}
   - {fileID: 1841654613}
-  - {fileID: 1604115383}
